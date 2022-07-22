@@ -5,6 +5,7 @@ filebeat.config:
 
 filebeat.inputs:
 - type: filestream
+  prospector.scanner.check_interval: 4s
   id: app-log-files
   paths:
     - /logs/*.log

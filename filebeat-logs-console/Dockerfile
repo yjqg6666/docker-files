@@ -1,6 +1,12 @@
-FROM elastic/filebeat:8.3.2
+FROM alpine:3.16.1
 
-CMD ["/usr/share/filebeat/filebeat", "-c", "/usr/share/filebeat/my-filebeat.yml"]
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'$
 
-COPY ./my-filebeat.yml /usr/share/filebeat/
+COPY ./edge-repositories /etc/apk/repositories
 
+RUN apk update
+RUN apk add filebeat
+
+CMD ["/usr/bin/filebeat", "-c", "/etc/filebeat/filebeat.yml"]
+
+COPY ./my-filebeat.yml /etc/filebeat/filebeat.yml
