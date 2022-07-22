@@ -27,4 +27,4 @@ filebeat.inputs:
 
 output.console:
   codec.format:
-    string: '%{[@timestamp]} %{[message]}'
+    string: '%{[message]}'
